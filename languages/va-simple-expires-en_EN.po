@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: VA Simple Expires\n"
 "POT-Creation-Date: 2014-04-14 06:22+0900\n"
-"PO-Revision-Date: 2014-04-14 06:22+0900\n"
+"PO-Revision-Date: 2014-04-14 06:25+0900\n"
 "Last-Translator: KUCKLU <kucklu.xxx.happydays@gmail.com>\n"
 "Language-Team: VisuAlive\n"
 "Language: en_EN\n"
@@ -19,7 +19,7 @@ msgstr ""
 #: ../va-simple-expires.php:57 ../va-simple-expires.php:126
 #: ../va-simple-expires.php:127
 msgid "Expire"
-msgstr "公開有効期限"
+msgstr ""
 
 #: ../va-simple-expires.php:68
 msgid "Field required"
@@ -35,25 +35,25 @@ msgstr ""
 
 #: ../va-simple-expires.php:86
 msgid "公開終了"
-msgstr ""
+msgstr "Expiration"
 
 #: ../va-simple-expires.php:93
 #, php-format
 msgid "公開終了 <span class=\"count\">(%s)</span>"
 msgid_plural "公開終了 <span class=\"count\">(%s)</span>"
-msgstr[0] ""
+msgstr[0] "Expiration  <span class=\"count\">(%s)</span>"
 
 #: ../va-simple-expires.php:195
 msgid "Enabled"
-msgstr "有効"
+msgstr ""
 
 #: ../va-simple-expires.php:195
 msgid "Disabled"
-msgstr "無効"
+msgstr ""
 
 #: ../va-simple-expires.php:205
 msgid "Insert a date for expire"
-msgstr "公開終了日時を入力"
+msgstr ""
 
 #~ msgid "Expiration"
 #~ msgstr "公開終了"

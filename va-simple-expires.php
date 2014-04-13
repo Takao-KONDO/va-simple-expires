@@ -83,14 +83,14 @@ function simple_expires(){
 
 	// Register post status
 	register_post_status( 'expiration', array(
-		'label'                     => _x( 'Expiration', 'post', VA_SIMPLE_EXPIRES_DOMAIN ),
+		'label'                     => _x( '公開終了', 'post', VA_SIMPLE_EXPIRES_DOMAIN ),
 		'protected'                 => true,
 		'_builtin'                  => true,
 		'public'                    => false,
 		'exclude_from_search'       => false,
 		'show_in_admin_all_list'    => true,
 		'show_in_admin_status_list' => true,
-		'label_count'               => _n_noop( 'Expiration <span class="count">(%s)</span>', 'Expiration <span class="count">(%s)</span>' )
+		'label_count'               => _n_noop( '公開終了 <span class="count">(%s)</span>', '公開終了 <span class="count">(%s)</span>' )
 	) );
 
 	//20 june 2011: bug fix by Kevin Roberts for timezone
