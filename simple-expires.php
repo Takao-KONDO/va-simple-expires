@@ -220,21 +220,23 @@ function scadenza_save_postdata( $post_id ) {
 
 	// Check permissions
 	if ( 'page' == $_POST['post_type'] ) {
-		if ( ! current_user_can( 'edit_page', $post_id ) )
+		if ( ! current_user_can( 'edit_page', $post_id ) ) {
 			return $post_id;
+		}
 	} else {
-		if ( !current_user_can( 'edit_post', $post_id ) )
+		if ( !current_user_can( 'edit_post', $post_id ) ) {
 			return $post_id;
-
-		// OK, we're authenticated: we need to find and save the data
-		$mydata = intval($_POST['anno']) . "-" . intval($_POST['mese']) . "-" . intval(zeroise( $_POST['giorno'], 2 )) . " " . intval(zeroise( $_POST['ore'], 2 )) . ":" . intval($_POST['min']) . ":00";
-		($mydata);
-		$enabled = $_POST['scadenza-enable'];
-
-		// Do something with $mydata
-		update_post_meta( $post_id,'scadenza-date', $mydata );
-		update_post_meta( $post_id, 'scadenza-enable', $enabled );
-		return $mydata;
+		}
 	}
+
+	// OK, we're authenticated: we need to find and save the data
+	$mydata = esc_attr($_POST['anno']) . "-" . esc_attr($_POST['mese']) . "-" . esc_attr(zeroise( $_POST['giorno'], 2 )) . " " . esc_attr(zeroise( $_POST['ore'], 2 )) . ":" . esc_attr($_POST['min']) . ":00";
+	($mydata);
+	$enabled = esc_attr($_POST['scadenza-enable']);
+
+	// Do something with $mydata
+	update_post_meta( $post_id,'scadenza-date', $mydata );
+	update_post_meta( $post_id, 'scadenza-enable', $enabled );
+	return $mydata;
 }
 add_action( 'save_post', 'scadenza_save_postdata' );
