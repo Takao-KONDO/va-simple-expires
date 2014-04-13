@@ -1,4 +1,4 @@
-simple-expires
+VA Simple Expires
 ==============
 
-[WordPress Plugin] He is an inheritor of Simple Expires by which Mr. abmcr was created. 
+[WordPress Plugin] He is an inheritor of Simple Expires by which Mr. abmcr was created.

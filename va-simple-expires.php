@@ -1,8 +1,9 @@
 <?php
 /*
-Plugin Name: Simple expires
+Plugin Name: VA Simple Expires
 Plugin URI: https://github.com/VisuAlive/simple-expires
 Description: He is an inheritor of Simple Expires by which Mr. abmcr was created.
+Simple plugin which can set up the term of validity of a report.
 Author: VisuAlive
 Version: 1.0.0
 Author URI: http://visualive.jp/
@@ -25,8 +26,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-define('SIMPLE_EXPIRES_PLUGIN_URL', WP_PLUGIN_URL.'/'.dirname(plugin_basename(__FILE__)));
-define('SIMPLE_EXPIRES_DOMAIN', 'simple-expires');
+define('VA_SIMPLE_EXPIRES_PLUGIN_URL', WP_PLUGIN_URL.'/'.dirname(plugin_basename(__FILE__)));
+define('VA_SIMPLE_EXPIRES_DOMAIN', 'va-simple-expires');
 
 function deactivation() {
 	//  remove rows from wp_postmeta tables
@@ -36,8 +37,8 @@ function deactivation() {
 
 
 function loadAdmin() {
-	load_plugin_textdomain( SIMPLE_EXPIRES_DOMAIN, PLUGINDIR.'/'.dirname(plugin_basename(__FILE__)).'/lang', dirname(plugin_basename(__FILE__)).'/lang' );
-	wp_enqueue_script( 'my_validate', SIMPLE_EXPIRES_PLUGIN_URL.'/js/jquery.validate.pack.js', array('jquery') );
+	load_plugin_textdomain( VA_SIMPLE_EXPIRES_DOMAIN, false, PLUGINDIR.'/'.dirname(plugin_basename(__FILE__)).'/languages' );
+	wp_enqueue_script( 'my_validate', VA_SIMPLE_EXPIRES_PLUGIN_URL.'/js/jquery.validate.pack.js', array('jquery') );
 }
 add_action('admin_menu', 'loadAdmin');
 
@@ -47,7 +48,7 @@ add_action('admin_menu', 'loadAdmin');
 function expirationdate_meta_custom() {
 	$custom_post_types = get_post_types();
 	foreach ( $custom_post_types as $t ) {
-		add_meta_box( 'scadenza_plugin', __( 'Expire', SIMPLE_EXPIRES_DOMAIN ), 'scadenza_', $t, 'side', 'high' );
+		add_meta_box( 'scadenza_plugin', __( 'Expire', VA_SIMPLE_EXPIRES_DOMAIN ), 'scadenza_', $t, 'side', 'high' );
 	}
 }
 add_action ('add_meta_boxes','expirationdate_meta_custom');
@@ -58,7 +59,7 @@ function validate_data(){
 ?>
 <script>
 jQuery.extend(jQuery.validator.messages, {
-	required: "<?php _e( 'Field required', SIMPLE_EXPIRES_DOMAIN ); ?>",number: "<?php _e( 'Invalid number', SIMPLE_EXPIRES_DOMAIN ); ?>",min: jQuery.validator.format("<?php _e( 'Please enter a value greater than or equal to {0}', SIMPLE_EXPIRES_DOMAIN ); ?>")
+	required: "<?php _e( 'Field required', VA_SIMPLE_EXPIRES_DOMAIN ); ?>",number: "<?php _e( 'Invalid number', VA_SIMPLE_EXPIRES_DOMAIN ); ?>",min: jQuery.validator.format("<?php _e( 'Please enter a value greater than or equal to {0}', VA_SIMPLE_EXPIRES_DOMAIN ); ?>")
 });
 jQuery().ready(function() {
 	jQuery("#post").validate({
@@ -116,8 +117,8 @@ add_action( 'init', 'simple_expires' );
 
 /* Adds a box to the main column on the Post and Page edit screens */
 function scadenza_add_custom_box() {
-	add_meta_box( 'scadenza_plugin', __( 'Expire', SIMPLE_EXPIRES_DOMAIN ), 'scadenza_', 'page','side' ,'high' );
-	add_meta_box( 'scadenza_plugin', __( 'Expire', SIMPLE_EXPIRES_DOMAIN ), 'scadenza_', 'post','side' ,'high' );
+	add_meta_box( 'scadenza_plugin', __( 'Expire', VA_SIMPLE_EXPIRES_DOMAIN ), 'scadenza_', 'page','side' ,'high' );
+	add_meta_box( 'scadenza_plugin', __( 'Expire', VA_SIMPLE_EXPIRES_DOMAIN ), 'scadenza_', 'post','side' ,'high' );
 }
 add_action('add_meta_boxes', 'scadenza_add_custom_box');
 
@@ -185,7 +186,7 @@ function scadenza_( $post ) {
 	echo'<div id="timestampdiv_scadenza" class="">';
 	$the_data = get_post_meta( $post->ID, 'scadenza-enable', true );
 	// Checkbox for scheduling this Post / Page, or ignoring
-	$items = array( __( 'Enabled', SIMPLE_EXPIRES_DOMAIN ), __( 'Disabled', SIMPLE_EXPIRES_DOMAIN ) );
+	$items = array( __( 'Enabled', VA_SIMPLE_EXPIRES_DOMAIN ), __( 'Disabled', VA_SIMPLE_EXPIRES_DOMAIN ) );
 	$value = array( 1, 0 );
 	$i     = 0;
 	foreach( $value as $item) {
@@ -195,7 +196,7 @@ function scadenza_( $post ) {
 	} // end foreach
 	echo "<br>\n<br>\n";
 	echo '<div class="">' . $years . $month . $days . '<br>' . $time_h . ' : ' . $time_i . '</div></div>';
-	echo "<p>".__('Insert a date for expire', SIMPLE_EXPIRES_DOMAIN)."</p>";
+	echo "<p>".__('Insert a date for expire', VA_SIMPLE_EXPIRES_DOMAIN)."</p>";
 }
 
 
