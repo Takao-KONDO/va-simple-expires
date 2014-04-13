@@ -7,6 +7,8 @@ Simple plugin which can set up the term of validity of a report.
 Author: VisuAlive
 Version: 1.0.0
 Author URI: http://visualive.jp/
+Text Domain: va-simple-expires
+Domain Path: /languages
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -26,8 +28,9 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-define('VA_SIMPLE_EXPIRES_PLUGIN_URL', WP_PLUGIN_URL.'/'.dirname(plugin_basename(__FILE__)));
-define('VA_SIMPLE_EXPIRES_DOMAIN', 'va-simple-expires');
+define( 'VA_SIMPLE_EXPIRES_PLUGIN_URL', WP_PLUGIN_URL.'/'.dirname(plugin_basename(__FILE__)) );
+define( 'VA_SIMPLE_EXPIRES_PLUGIN_PATH', dirname(plugin_basename(__FILE__)) );
+define( 'VA_SIMPLE_EXPIRES_DOMAIN', 'va-simple-expires' );
 
 function deactivation() {
 	//  remove rows from wp_postmeta tables
@@ -35,9 +38,12 @@ function deactivation() {
 	$wpdb->query( $wpdb->prepare("DELETE FROM $wpdb->postmeta WHERE meta_key='scadenza-enable' OR meta_key='scadenza-date'" ) );
 }
 
+function plugins_loaded() {
+	load_plugin_textdomain( VA_SIMPLE_EXPIRES_DOMAIN, false, VA_SIMPLE_EXPIRES_PLUGIN_PATH.'/languages' );
+}
+add_action('plugins_loaded', 'plugins_loaded');
 
 function loadAdmin() {
-	load_plugin_textdomain( VA_SIMPLE_EXPIRES_DOMAIN, false, PLUGINDIR.'/'.dirname(plugin_basename(__FILE__)).'/languages' );
 	wp_enqueue_script( 'my_validate', VA_SIMPLE_EXPIRES_PLUGIN_URL.'/js/jquery.validate.pack.js', array('jquery') );
 }
 add_action('admin_menu', 'loadAdmin');
@@ -77,7 +83,7 @@ function simple_expires(){
 
 	// Register post status
 	register_post_status( 'expired', array(
-		'label'                     => __( 'Expired' ),
+		'label'                     => _x( 'Expired', 'post', VA_SIMPLE_EXPIRES_DOMAIN ),
 		'protected'                 => true,
 		'_builtin'                  => true,
 		'public'                    => false,
