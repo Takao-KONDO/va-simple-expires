@@ -191,7 +191,7 @@ function scadenza_( $post ) {
 	$i     = 0;
 	foreach( $value as $item) {
 		$checked = ( ( $the_data == $item ) || ( $the_data=='') ) ? ' checked="checked" ' : '';
-		echo "<label><input" . $checked . "value='" . $item . "' name='scadenza-enable' id='scadenza-enable' type='radio'>" . $items[$i] . " </label>";
+		echo "<label><input" . $checked . " value='" . $item . "' name='scadenza-enable' id='scadenza-enable' type='radio'>" . $items[$i] . " </label>";
 		$i++;
 	} // end foreach
 	echo "<br>\n<br>\n";
@@ -204,8 +204,13 @@ function scadenza_( $post ) {
 function scadenza_save_postdata( $post_id ) {
 	// verify this came from the our screen and with proper authorization,
 	// because save_post can be triggered at other times
-	$nonce = esc_attr( $_POST['simple-expires-nonce'] );
-	if ( ! isset( $nonce ) || ! wp_verify_nonce( $nonce, plugin_basename(__FILE__) ) ) {
+	if ( isset( $_POST['simple-expires-nonce'] ) ) {
+		$nonce = esc_attr( $_POST['simple-expires-nonce'] );
+	} else {
+		$nonce = NULL;
+	}
+
+	if ( ! wp_verify_nonce( $nonce, plugin_basename(__FILE__) ) ) {
 		return $post_id;
 	}
 
@@ -223,7 +228,7 @@ function scadenza_save_postdata( $post_id ) {
 			return $post_id;
 
 		// OK, we're authenticated: we need to find and save the data
-		$mydata = esc_( intval($_POST['anno']) ) . "-" . intval($_POST['mese']) . "-" . intval(zeroise( $_POST['giorno'], 2 )) . " " . intval(zeroise( $_POST['ore'], 2 )) . ":" . intval($_POST['min']) . ":00";
+		$mydata = intval($_POST['anno']) . "-" . intval($_POST['mese']) . "-" . intval(zeroise( $_POST['giorno'], 2 )) . " " . intval(zeroise( $_POST['ore'], 2 )) . ":" . intval($_POST['min']) . ":00";
 		($mydata);
 		$enabled = $_POST['scadenza-enable'];
 
