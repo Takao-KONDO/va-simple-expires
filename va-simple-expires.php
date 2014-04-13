@@ -82,15 +82,15 @@ function simple_expires(){
 	global $wpdb;
 
 	// Register post status
-	register_post_status( 'expired', array(
-		'label'                     => _x( 'Expired', 'post', VA_SIMPLE_EXPIRES_DOMAIN ),
+	register_post_status( 'expiration', array(
+		'label'                     => _x( 'Expiration', 'post', VA_SIMPLE_EXPIRES_DOMAIN ),
 		'protected'                 => true,
 		'_builtin'                  => true,
 		'public'                    => false,
 		'exclude_from_search'       => false,
 		'show_in_admin_all_list'    => true,
 		'show_in_admin_status_list' => true,
-		'label_count'               => _n_noop( 'Expired <span class="count">(%s)</span>', 'Expired <span class="count">(%s)</span>' )
+		'label_count'               => _n_noop( 'Expiration <span class="count">(%s)</span>', 'Expiration <span class="count">(%s)</span>' )
 	) );
 
 	//20 june 2011: bug fix by Kevin Roberts for timezone
@@ -113,7 +113,7 @@ function simple_expires(){
 		foreach ( $result as $cur_post ) :
 			$update_post = array('ID' => $cur_post->post_id);
 			// Get the Post's ID into the update array
-			$update_post['post_status'] = 'expired';
+			$update_post['post_status'] = 'expiration';
 			wp_update_post( $update_post );
 		endforeach;
 	endif;
