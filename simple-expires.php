@@ -61,16 +61,16 @@ add_action ('add_meta_boxes','expirationdate_meta_custom');
 
 function validate_data(){
 ?>
-	<script>
-	jQuery.extend(jQuery.validator.messages, {
-			 required: "<?php _e( 'Field required', SIMPLE_EXPIRES_DOMAIN ); ?>",number: "<?php _e( 'Invalid number', SIMPLE_EXPIRES_DOMAIN ); ?>",min: jQuery.validator.format("<?php _e( 'Please enter a value greater than or equal to {0}', SIMPLE_EXPIRES_DOMAIN ); ?>");
+<script>
+jQuery.extend(jQuery.validator.messages, {
+	required: "<?php _e( 'Field required', SIMPLE_EXPIRES_DOMAIN ); ?>",number: "<?php _e( 'Invalid number', SIMPLE_EXPIRES_DOMAIN ); ?>",min: jQuery.validator.format("<?php _e( 'Please enter a value greater than or equal to {0}', SIMPLE_EXPIRES_DOMAIN ); ?>")
+});
+jQuery().ready(function() {
+	jQuery("#post").validate({
+		rules:{anno:{number:true,min:2011},ore:{number:true,max:24},min:{number:true,max:60}}
 	});
-	jQuery().ready(function() {
-		jQuery("#post").validate({
-			rules:{anno:{number:true,min:2011},ore:{number:true,max:24},min:{number:true,max:60}}
-		});
-	});
-	</script>
+});
+</script>
 <?php
 }
 add_action("admin_head","validate_data");
@@ -196,7 +196,7 @@ function scadenza_( $post ) {
 	$i     = 0;
 	foreach( $value as $item) {
 		$checked = ( ( $the_data == $item ) || ( $the_data=='') ) ? ' checked="checked" ' : '';
-		echo "<label><input" . $checked . "value='" . $item . "' name='scadenza-enable' id='scadenza-enable' type='radio'> " . $items[$i] . "</label>";
+		echo "<label><input" . $checked . "value='" . $item . "' name='scadenza-enable' id='scadenza-enable' type='radio'>" . $items[$i] . " </label>";
 		$i++;
 	} // end foreach
 	echo "<br>\n<br>\n";
