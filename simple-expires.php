@@ -87,18 +87,17 @@ function simple_expires(){
 	) );
 
 	//20 june 2011: bug fix by Kevin Roberts for timezone
-	$current_time = current_time("mysql");
 	$result = $wpdb->get_results( $wpdb->prepare("
 		SELECT postmetadate.post_id
 		FROM $wpdb->postmeta AS postmetadate, $wpdb->postmeta AS postmetadoit, $wpdb->posts AS posts
 		WHERE postmetadoit.meta_key = 'scadenza-enable'
 		AND postmetadoit.meta_value = '1'
 		AND postmetadate.meta_key = 'scadenza-date'
-		AND postmetadate.meta_value <= %d
+		AND postmetadate.meta_value <= %s
 		AND postmetadate.post_id = postmetadoit.post_id
 		AND postmetadate.post_id = posts.ID
 		AND posts.post_status = 'publish'
-	", $current_time ) );
+	", current_time("mysql") ) );
 
 	// Act upon the results
 	if ( ! empty( $result ) ) :
