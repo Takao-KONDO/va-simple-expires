@@ -30,9 +30,32 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 if ( ! class_exists( 'VA_Simple_Expires' ) ) :
-define( 'VA_SIMPLE_EXPIRES_PLUGIN_URL', WP_PLUGIN_URL.'/'.dirname(plugin_basename(__FILE__)) );
-define( 'VA_SIMPLE_EXPIRES_PLUGIN_PATH', dirname(plugin_basename(__FILE__)) );
-define( 'VA_SIMPLE_EXPIRES_DOMAIN', 'va-simple-expires' );
+define( 'VA_SIMPLE_EXPIRES_PLUGIN_URL', plugin_dir_url(__FILE__) );
+define( 'VA_SIMPLE_EXPIRES_PLUGIN_PATH', plugin_dir_path(__FILE__) );
+define( 'VA_SIMPLE_EXPIRES_DOMAIN', plugin_basename( __FILE__ ) );
+
+add_action( 'init', 'va_simple_expires_github_plugin_updater_init' );
+function va_simple_expires_github_plugin_updater_init() {
+	include_once VA_SIMPLE_EXPIRES_PLUGIN_PATH . 'updater.php';
+	define( 'WP_GITHUB_FORCE_UPDATE', true );
+
+	if ( is_admin() ) { // note the use of is_admin() to double check that this is happening in the admin
+		$config = array(
+			'slug' => plugin_basename( __FILE__ ),
+			'proper_folder_name' => 'github-updater',
+			'api_url' => 'https://api.github.com/repos/VisuAlive/va-simple-expires',
+			'raw_url' => 'https://raw.github.com/VisuAlive/va-simple-expires/master',
+			'github_url' => 'https://github.com/VisuAlive/va-simple-expires',
+			'zip_url' => 'https://github.com/VisuAlive/va-simple-expires/archive/master.zip',
+			'sslverify' => true,
+			'requires' => '3.8.2',
+			'tested' => '3.8.2',
+			'readme' => 'README.md',
+			'access_token' => '',
+		);
+		new WP_GitHub_Updater( $config );
+	}
+}
 
 class VA_Simple_Expires {
 	function __construct() {
@@ -51,7 +74,7 @@ class VA_Simple_Expires {
 	}
 
 	function plugins_loaded() {
-		load_plugin_textdomain( VA_SIMPLE_EXPIRES_DOMAIN, false, VA_SIMPLE_EXPIRES_PLUGIN_PATH.'/languages' );
+		load_plugin_textdomain( VA_SIMPLE_EXPIRES_DOMAIN, false, dirname(plugin_basename(__FILE__)) .'/languages' );
 	}
 
 	function loadAdmin() {
