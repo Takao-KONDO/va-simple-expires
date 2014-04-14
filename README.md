@@ -18,7 +18,7 @@ Simple plugin which can set up the term of validity of a report.
 
 ## Installation
 
-To install Simple Expires:
+To install VA Simple Expires:
 
 1. Upload the "simple-expires" directory and all its contents to your `/wp-content/plugins/` directory.
 1. Activate the plugin through the 'Plugins' menu in WordPress.
