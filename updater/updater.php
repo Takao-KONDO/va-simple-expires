@@ -383,27 +383,26 @@ class WP_GitHub_Updater {
 	 * @param bool    $false  always false
 	 * @param string  $action the API function being performed
 	 * @param object  $args   plugin arguments
-	 * @return object $response the plugin info
+	 * @return object $args the plugin info
 	 */
-	public function get_plugin_info( $false, $action, $response ) {
+	public function get_plugin_info( $false, $action, $args ) {
+// 		// Check if this call API is for the right plugin
+// 		if ( !isset( $args->slug ) || $args->slug != $this->config['slug'] )
+// 			return false;
 
-		// Check if this call API is for the right plugin
-		if ( !isset( $response->slug ) || $response->slug != $this->config['slug'] )
-			return false;
+		$args->slug = $this->config['slug'];
+		$args->plugin_name  = $this->config['plugin_name'];
+		$args->version = $this->config['new_version'];
+		$args->author = $this->config['author'];
+		$args->homepage = $this->config['homepage'];
+		$args->requires = $this->config['requires'];
+		$args->tested = $this->config['tested'];
+		$args->downloaded   = 0;
+		$args->last_updated = $this->config['last_updated'];
+		$args->sections = array( 'description' => $this->config['description'] );
+		$args->download_link = $this->config['zip_url'];
 
-		$response->slug = $this->config['slug'];
-		$response->plugin_name  = $this->config['plugin_name'];
-		$response->version = $this->config['new_version'];
-		$response->author = $this->config['author'];
-		$response->homepage = $this->config['homepage'];
-		$response->requires = $this->config['requires'];
-		$response->tested = $this->config['tested'];
-		$response->downloaded   = 0;
-		$response->last_updated = $this->config['last_updated'];
-		$response->sections = array( 'description' => $this->config['description'] );
-		$response->download_link = $this->config['zip_url'];
-
-		return $response;
+		return $args;
 	}
 
 
