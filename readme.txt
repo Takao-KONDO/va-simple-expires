@@ -1,25 +1,20 @@
-=== Simple Expires ===
-Contributors: abmcr (andrea bersi)
-Donate link: http://www.andreabersi.com/
+=== VA Simple Expires ===
+Contributors: VisuAlive (KUCKLU)
+Donate link: https://github.com/VisuAlive/simple-expires
 Tags: automation, expire, expires, expiring, schedule, scheduling
 Requires at least: 3.0.3
-Tested up to: 3.2 beta
+Tested up to: 3.8.2
 Stable tag: trunk
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Enable Posts and Pages to automatically expire and change at a certain time, and provide notification of expiration.
+He is an fork of Simple Expires by which Mr. abmcr was created.
+Simple plugin which can set up the term of validity of a report.
 
 == Description ==
 
-Enable Posts and Pages to automatically expire and change at a certain time, and provide notification of expiration.
-
-
-= Notification Options =
-
-Simple Expires  also notify you:
-
-* When expiration occurs
-
-This reminder helps you keep content fresh, providing a reminder that content is out of date and needs updated or replaced.
+He is an fork of Simple Expires by which Mr. abmcr was created.
+Simple plugin which can set up the term of validity of a report.
 
 == Installation ==
 
@@ -30,39 +25,31 @@ To install Simple Expires:
 
 == Frequently Asked Questions ==
 
-= What about this plugin? =
+= What is this? =
 
-This plugin is a simple version of another plugin:  ["Content Scheduler"](http://wordpress.org/extend/plugins/content-scheduler/) 
-
-= Does Simple Expires work with Network / Multisite installations? =
-
-Maybe. This is not tested.
-
-= It is possible to set the state of post/page at expires? =
-
-No! If you need more control use the very best plugin ["Content Scheduler"](http://wordpress.org/extend/plugins/content-scheduler/)
+The description covers it all.
 
 == Screenshots ==
 
-1. Simple Expires.
-
+1. VA Simple Expires.
 
 == Changelog ==
-= 1.3 =
-* Russian language (By Alexey Pazdnikov).
-= 1.2 =
-* Update for timezone (By Kevin Roberts).
-= 1.1 =
-* Update for custom post type (By Igor Riboni).
-= 1.0 =
-* First public release.
+= 1.0.5 =
+* Big fix.
 
-== Upgrade Notice ==
-= 1.2 =
-Bug fix
-= 1.1 =
-Bug Fix
-= 1.0 =
-Version 0.1 is the first public release.
+= 1.0.4 =
+* Big fix.
+
+= 1.0.3 =
+* Big fix.
+
+= 1.0.2 =
+* Big fix.
+
+= 1.0.1 =
+* Big fix.
+
+= 1.0.0 =
+* First public release.
 
 
