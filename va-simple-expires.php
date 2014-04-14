@@ -81,7 +81,7 @@ class VA_Simple_Expires {
 <script>
 jQuery(document).ready(function($){
 	$("select#post_status").append("<option value=\"expiration\" '.$complete.'> 公開終了</option>");
-	$(".misc-pub-section label").append("'.$label.'");
+	$("span#post-status-display").append("'.$label.'");
 });
 </script>' . "\n";
 		endif;
