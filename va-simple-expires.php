@@ -42,7 +42,7 @@ function va_simple_expires_github_plugin_updater_init() {
 	if ( is_admin() ) { // note the use of is_admin() to double check that this is happening in the admin
 		$config = array(
 			'slug' => plugin_basename( __FILE__ ),
-			'proper_folder_name' => plugin_basename( __FILE__ ),
+			'proper_folder_name' => VA_SIMPLE_EXPIRES_DOMAIN,
 			'api_url' => 'https://api.github.com/repos/VisuAlive/va-simple-expires',
 			'raw_url' => 'https://raw.github.com/VisuAlive/va-simple-expires/master',
 			'github_url' => 'https://github.com/VisuAlive/va-simple-expires',
@@ -74,7 +74,7 @@ class VA_Simple_Expires {
 	}
 
 	function plugins_loaded() {
-		load_plugin_textdomain( VA_SIMPLE_EXPIRES_DOMAIN, false, dirname(plugin_basename(__FILE__)) .'/languages' );
+		load_plugin_textdomain( VA_SIMPLE_EXPIRES_DOMAIN, false, VA_SIMPLE_EXPIRES_DOMAIN .'/languages' );
 	}
 
 	function loadAdmin() {
