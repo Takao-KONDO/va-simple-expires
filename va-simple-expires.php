@@ -6,7 +6,7 @@ Plugin URI: https://github.com/VisuAlive/va-simple-expires
 Description: This is the fork of Simple Expires created by Mr. abmcr.
 Simple plugin which can set up the term of validity of a report.
 Author: VisuAlive
-Version: 1.0.5
+Version: 1.0.0
 Author URI: http://visualive.jp/
 Text Domain: va-simple-expires
 Domain Path: /languages
@@ -32,11 +32,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 if ( ! class_exists( 'VA_Simple_Expires' ) ) :
 define( 'VA_SIMPLE_EXPIRES_PLUGIN_URL', plugin_dir_url(__FILE__) );
 define( 'VA_SIMPLE_EXPIRES_PLUGIN_PATH', plugin_dir_path(__FILE__) );
-define( 'VA_SIMPLE_EXPIRES_DOMAIN', plugin_basename( __FILE__ ) );
+define( 'VA_SIMPLE_EXPIRES_DOMAIN', dirname(plugin_basename(__FILE__)) );
 
 add_action( 'init', 'va_simple_expires_github_plugin_updater_init' );
 function va_simple_expires_github_plugin_updater_init() {
-	include_once VA_SIMPLE_EXPIRES_PLUGIN_PATH . 'updater.php';
+	include_once VA_SIMPLE_EXPIRES_PLUGIN_PATH . 'updater/updater.php';
 	define( 'WP_GITHUB_FORCE_UPDATE', true );
 
 	if ( is_admin() ) { // note the use of is_admin() to double check that this is happening in the admin
