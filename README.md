@@ -1,29 +1,19 @@
 # VA Simple Expires
 Contributors: VisuAlive (KUCKLU)
-
 Donate link: https://github.com/VisuAlive/simple-expires
-
 Tags: automation, expire, expires, expiring, schedule, scheduling
-
 Requires at least: 3.0.3
-
 Tested up to: 3.8.2
-
 Stable tag: trunk
-
 License: GPLv2 or later
-
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-
 He is an fork of Simple Expires by which Mr. abmcr was created.
-
 Simple plugin which can set up the term of validity of a report.
 
 ## Description
 
 He is an fork of Simple Expires by which Mr. abmcr was created.
-
 Simple plugin which can set up the term of validity of a report.
 
 ## Installation
