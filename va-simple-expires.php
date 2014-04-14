@@ -38,7 +38,7 @@ class VA_Simple_Expires {
 	function __construct() {
 		add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ) );
 		add_action( 'admin_menu', array( $this, 'loadAdmin' ) );
-		add_action( 'admin_head', array( $this, 'validate_data' ) );
+		add_action( 'admin_head', array( $this, 'add_post_status' ) );
 		add_action( 'init', array( $this, 'simple_expires' ) );
 		add_action( 'add_meta_boxes', array( $this, 'scadenza_add_custom_box' ) );
 		add_action( 'save_post', array( $this, 'scadenza_save_postdata' ) );
@@ -65,7 +65,7 @@ class VA_Simple_Expires {
 	}
 	// end Riboni Igor
 
-	function validate_data() {
+	function add_post_status() {
 		global $post;
 		$complete = '';
 		$label = '';
@@ -82,14 +82,6 @@ class VA_Simple_Expires {
 jQuery(document).ready(function($){
 	$("select#post_status").append("<option value=\"expiration\" '.$complete.'> 公開終了</option>");
 	$(".misc-pub-section label").append("'.$label.'");
-});
-jQuery.extend(jQuery.validator.messages, {
-	required: "' . __( 'Field required', VA_SIMPLE_EXPIRES_DOMAIN ) . '",number: "' . __( 'Invalid number', VA_SIMPLE_EXPIRES_DOMAIN ) . '",min: jQuery.validator.format("' . __( 'Please enter a value greater than or equal to {0}', VA_SIMPLE_EXPIRES_DOMAIN ) . '")
-});
-jQuery().ready(function() {
-	jQuery("#post").validate({
-		rules:{anno:{number:true,min:2011},ore:{number:true,max:24},min:{number:true,max:60}}
-	});
 });
 </script>' . "\n";
 		endif;
