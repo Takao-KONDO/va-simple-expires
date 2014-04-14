@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 /*
 Plugin Name: VA Simple Expires
 Plugin URI: https://github.com/VisuAlive/va-simple-expires
-Description: He is an fork of Simple Expires by which Mr. abmcr was created.
+Description: This is an fork of Simple Expires by which Mr. abmcr was created.
 Simple plugin which can set up the term of validity of a report.
 Author: VisuAlive
 Version: 1.0.5
