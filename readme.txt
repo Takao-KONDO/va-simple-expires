@@ -1,8 +1,8 @@
 === VA Simple Expires ===
 Contributors: VisuAlive (KUCKLU)
-Donate link: https://github.com/VisuAlive/simple-expires
+Donate link: https://github.com/VisuAlive/va-simple-expires
 Tags: automation, expire, expires, expiring, schedule, scheduling
-Requires at least: 3.0.3
+Requires at least: 3.8.2
 Tested up to: 3.8.2
 Stable tag: trunk
 License: GPLv2 or later
@@ -18,10 +18,10 @@ Simple plugin which can set up the term of validity of a report.
 
 == Installation ==
 
-To install Simple Expires:
+To install VA-Simple Expires:
 
 1. Upload the "simple-expires" directory and all its contents to your `/wp-content/plugins/` directory.
-1. Activate the plugin through the 'Plugins' menu in WordPress.
+2. Activate the plugin through the 'Plugins' menu in WordPress.
 
 == Frequently Asked Questions ==
 
