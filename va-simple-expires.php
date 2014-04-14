@@ -62,21 +62,41 @@ add_action ('add_meta_boxes','expirationdate_meta_custom');
 
 
 function validate_data(){
-?>
+	global $post;
+	$complete = '';
+	$label = '';
+	$get_posttype = va_se_get_post_types();
+	$now_posttype = get_post_type();
+
+	if( in_array($now_posttype, $get_posttype) ) :
+		if($post->post_status == 'expiration'){
+			$complete = ' selected=\"selected\"';
+			$label = '<span id=\"post-status-display\"> 公開終了</span>';
+		}
+		echo '
 <script>
+jQuery(document).ready(function($){
+	$("select#post_status").append("<option value=\"expiration\" '.$complete.'> 公開終了</option>");
+	$(".misc-pub-section label").append("'.$label.'");
+});
 jQuery.extend(jQuery.validator.messages, {
-	required: "<?php _e( 'Field required', VA_SIMPLE_EXPIRES_DOMAIN ); ?>",number: "<?php _e( 'Invalid number', VA_SIMPLE_EXPIRES_DOMAIN ); ?>",min: jQuery.validator.format("<?php _e( 'Please enter a value greater than or equal to {0}', VA_SIMPLE_EXPIRES_DOMAIN ); ?>")
+	required: "' . __( 'Field required', VA_SIMPLE_EXPIRES_DOMAIN ) . '",number: "' . __( 'Invalid number', VA_SIMPLE_EXPIRES_DOMAIN ) . '",min: jQuery.validator.format("' . __( 'Please enter a value greater than or equal to {0}', VA_SIMPLE_EXPIRES_DOMAIN ) . '")
 });
 jQuery().ready(function() {
 	jQuery("#post").validate({
 		rules:{anno:{number:true,min:2011},ore:{number:true,max:24},min:{number:true,max:60}}
 	});
 });
-</script>
-<?php
+</script>' . "\n";
+	endif;
 }
 add_action("admin_head","validate_data");
 
+function va_se_get_post_types() {
+	$default_post = array('post' => 'post', 'page' => 'page');
+	$custom_post  = get_post_types( array( 'public' => true, '_builtin' => false ), 'names' );
+	return array_merge( $default_post, $custom_post );
+}
 
 function simple_expires(){
 	global $wpdb;
