@@ -77,13 +77,15 @@ class VA_Simple_Expires {
 				$complete = ' selected=\"selected\"';
 				$label = '<span id=\"post-status-display\"> 公開終了</span>';
 			}
-			echo '
+			$option = '<option value=\"expiration\" '.$complete.'> 公開終了</option>';
+			?>
 <script>
 jQuery(document).ready(function($){
-	$("select#post_status").append("<option value=\"expiration\" '.$complete.'> 公開終了</option>");
-	$("span#post-status-display").append("'.$label.'");
+	$("select#post_status").append("<?php echo $option; ?>");
+	$("span#post-status-display").append("<?php echo $label; ?>");
 });
-</script>' . "\n";
+</script>
+		<?php
 		endif;
 	}
 
