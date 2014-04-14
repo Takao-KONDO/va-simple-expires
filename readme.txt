@@ -34,6 +34,9 @@ The description covers it all.
 1. VA Simple Expires.
 
 == Changelog ==
+= 1.1.0 =
+* Github updater.
+
 = 1.0.5 =
 * Big fix.
 
