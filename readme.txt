@@ -8,12 +8,12 @@ Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-This is an fork of Simple Expires by which Mr. abmcr was created.
+This is the fork of Simple Expires created by Mr. abmcr.
 Simple plugin which can set up the term of validity of a report.
 
 == Description ==
 
-This is an fork of Simple Expires by which Mr. abmcr was created.
+This is the fork of Simple Expires created by Mr. abmcr.
 Simple plugin which can set up the term of validity of a report.
 
 == Installation ==
