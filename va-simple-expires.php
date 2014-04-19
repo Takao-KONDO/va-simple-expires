@@ -33,6 +33,7 @@ if ( ! class_exists( 'VA_Simple_Expires' ) ) :
 define( 'VA_SIMPLE_EXPIRES_PLUGIN_URL', plugin_dir_url(__FILE__) );
 define( 'VA_SIMPLE_EXPIRES_PLUGIN_PATH', plugin_dir_path(__FILE__) );
 define( 'VA_SIMPLE_EXPIRES_DOMAIN', dirname(plugin_basename(__FILE__)) );
+define( 'VA_SIMPLE_EXPIRES_TEXTDOMAIN', 'va-simple-expires' );
 
 add_action( 'init', 'va_simple_expires_github_plugin_updater_init' );
 function va_simple_expires_github_plugin_updater_init() {
@@ -74,7 +75,7 @@ class VA_Simple_Expires {
 	}
 
 	function plugins_loaded() {
-		load_plugin_textdomain( VA_SIMPLE_EXPIRES_DOMAIN, false, VA_SIMPLE_EXPIRES_DOMAIN .'/languages' );
+		load_plugin_textdomain( VA_SIMPLE_EXPIRES_TEXTDOMAIN, false, VA_SIMPLE_EXPIRES_DOMAIN .'/languages' );
 	}
 
 	function loadAdmin() {
@@ -98,9 +99,9 @@ class VA_Simple_Expires {
 		if( in_array($now_posttype, $get_posttype) ) :
 			if($post->post_status == 'expiration'){
 				$complete = ' selected=\"selected\"';
-				$label = '<span id=\"post-status-display\"> 公開終了</span>';
+				$label = '<span id=\"post-status-display\"> ' . __( 'Ended', VA_SIMPLE_EXPIRES_TEXTDOMAIN ) . '</span>';
 			}
-			$option = '<option value=\"expiration\" '.$complete.'> 公開終了</option>';
+			$option = '<option value=\"expiration\" '.$complete.'> ' . __( 'Ended', VA_SIMPLE_EXPIRES_TEXTDOMAIN ) . '</option>';
 			?>
 <script>
 jQuery(document).ready(function($){
@@ -117,14 +118,14 @@ jQuery(document).ready(function($){
 
 		// Register post status
 		register_post_status( 'expiration', array(
-			'label'                     => _x( '公開終了', 'post', VA_SIMPLE_EXPIRES_DOMAIN ),
+			'label'                     => _x( 'Ended', 'post', VA_SIMPLE_EXPIRES_TEXTDOMAIN ),
 			'protected'                 => true,
 			'_builtin'                  => true,
 			'public'                    => false,
 			'exclude_from_search'       => false,
 			'show_in_admin_all_list'    => true,
 			'show_in_admin_status_list' => true,
-			'label_count'               => _n_noop( '公開終了 <span class="count">(%s)</span>', '公開終了 <span class="count">(%s)</span>' )
+			'label_count'               => _n_noop( 'Ended <span class="count">(%s)</span>', 'Ended <span class="count">(%s)</span>', VA_SIMPLE_EXPIRES_TEXTDOMAIN )
 		) );
 
 		//20 june 2011: bug fix by Kevin Roberts for timezone
@@ -156,7 +157,7 @@ jQuery(document).ready(function($){
 	function scadenza_add_custom_box() {
 		$custom_post_types = $this->va_se_get_post_types();
 		foreach ( $custom_post_types as $t ) {
-			add_meta_box( 'scadenza_plugin', __( 'Expire', VA_SIMPLE_EXPIRES_DOMAIN ), array( $this, 'scadenza_' ), $t, 'side', 'high' );
+			add_meta_box( 'scadenza_plugin', __( 'Expire', VA_SIMPLE_EXPIRES_TEXTDOMAIN ), array( $this, 'scadenza_' ), $t, 'side', 'high' );
 		}
 	}
 
@@ -223,7 +224,7 @@ jQuery(document).ready(function($){
 		echo'<div id="timestampdiv_scadenza" class="">';
 		$the_data = get_post_meta( $post->ID, 'scadenza-enable', true );
 		// Checkbox for scheduling this Post / Page, or ignoring
-		$items = array( __( 'Enabled', VA_SIMPLE_EXPIRES_DOMAIN ), __( 'Disabled', VA_SIMPLE_EXPIRES_DOMAIN ) );
+		$items = array( __( 'Enabled', VA_SIMPLE_EXPIRES_TEXTDOMAIN ), __( 'Disabled', VA_SIMPLE_EXPIRES_TEXTDOMAIN ) );
 		$value = array( 1, 0 );
 		$i     = 0;
 		foreach( $value as $item) {
@@ -233,7 +234,7 @@ jQuery(document).ready(function($){
 		} // end foreach
 		echo "<br>\n<br>\n";
 		echo '<div class="">' . $years . $month . $days . '<br>' . $time_h . ' : ' . $time_i . '</div></div>';
-		echo "<p>".__('Insert a date for expire', VA_SIMPLE_EXPIRES_DOMAIN)."</p>";
+		echo "<p>".__( 'Insert a date for expire.', VA_SIMPLE_EXPIRES_TEXTDOMAIN )."</p>";
 	}
 
 
