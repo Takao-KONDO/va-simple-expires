@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: VA Simple Expires\n"
-"POT-Creation-Date: 2014-04-20 00:44+0900\n"
-"PO-Revision-Date: 2014-04-20 00:44+0900\n"
+"POT-Creation-Date: 2014-04-20 01:42+0900\n"
+"PO-Revision-Date: 2014-04-20 01:42+0900\n"
 "Last-Translator: KUCKLU <kucklu.xxx.happydays@gmail.com>\n"
 "Language-Team: VisuAlive\n"
 "Language: en\n"
@@ -37,6 +37,11 @@ msgstr ""
 
 #: ../va-simple-expires.php:227
 msgid "Disabled"
+msgstr ""
+
+#: ../va-simple-expires.php:236
+#, php-format
+msgid "%2$s%3$s%1$s<br>%4$s : %5$s"
 msgstr ""
 
 #: ../va-simple-expires.php:237
