@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: VA Simple Expires\n"
-"POT-Creation-Date: 2014-04-20 00:44+0900\n"
-"PO-Revision-Date: 2014-04-20 00:48+0900\n"
+"POT-Creation-Date: 2014-04-20 01:35+0900\n"
+"PO-Revision-Date: 2014-04-20 01:35+0900\n"
 "Last-Translator: KUCKLU <kucklu.xxx.happydays@gmail.com>\n"
 "Language-Team: VisuAlive\n"
 "Language: en\n"
@@ -14,6 +14,16 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __;_n;_n:1,2;_e;_x;_n_noop:1,2\n"
 "X-Poedit-SearchPath-0: ..\n"
+
+#: ../updater/updater.php:430
+msgid ""
+"The plugin has been updated, but could not be reactivated. Please reactivate "
+"it manually."
+msgstr ""
+
+#: ../updater/updater.php:431
+msgid "Plugin reactivated successfully."
+msgstr ""
 
 #: ../va-simple-expires.php:102 ../va-simple-expires.php:104
 #: ../va-simple-expires.php:121
@@ -40,5 +50,10 @@ msgid "Disabled"
 msgstr "無効にする"
 
 #: ../va-simple-expires.php:237
+#, php-format
+msgid "%2$s%3$s%1$s<br>%4$s : %5$s"
+msgstr "%1$s%2$s%3$s<br>%4$s : %5$s"
+
+#: ../va-simple-expires.php:238
 msgid "Insert a date for expire."
 msgstr "公開終了日時を設定します。"

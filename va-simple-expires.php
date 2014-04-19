@@ -4,9 +4,9 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 Plugin Name: VA Simple Expires
 Plugin URI: https://github.com/VisuAlive/va-simple-expires
 Description: This is the fork of Simple Expires created by Mr. abmcr.
-Simple plugin which can set up the term of validity of a report.
+Simple plugin which can set up the term of validity.
 Author: VisuAlive
-Version: 1.1.0
+Version: 1.0.0
 Author URI: http://visualive.jp/
 Text Domain: va-simple-expires
 Domain Path: /languages
@@ -50,8 +50,8 @@ function va_simple_expires_github_plugin_updater_init() {
 			'zip_url' => 'https://github.com/VisuAlive/va-simple-expires/archive/master.zip',
 			'sslverify' => true,
 			'requires' => '3.8.2',
-			'tested' => '3.8.2',
-			'readme' => 'README.md',
+			'tested' => '3.9.0',
+			'readme' => 'README.txt',
 			'access_token' => '',
 		);
 		new WP_GitHub_Updater( $config );
@@ -233,10 +233,10 @@ jQuery(document).ready(function($){
 			$i++;
 		} // end foreach
 		echo "<br>\n<br>\n";
-		echo '<div class="">' . $years . $month . $days . '<br>' . $time_h . ' : ' . $time_i . '</div></div>';
+		// echo '<div class="">' . $years . $month . $days . '<br>' . $time_h . ' : ' . $time_i . '</div></div>';
+		echo '<div class="">' . sprintf( __( '%2$s%3$s%1$s<br>%4$s : %5$s', VA_SIMPLE_EXPIRES_TEXTDOMAIN ), $years, $month, $days, $time_h, $time_i ) . '</div></div>';
 		echo "<p>".__( 'Insert a date for expire.', VA_SIMPLE_EXPIRES_TEXTDOMAIN )."</p>";
 	}
-
 
 	/* When the post is saved, saves our custom data */
 	function scadenza_save_postdata( $post_id ) {
