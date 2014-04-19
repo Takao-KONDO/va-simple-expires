@@ -233,7 +233,6 @@ jQuery(document).ready(function($){
 			$i++;
 		} // end foreach
 		echo "<br>\n<br>\n";
-		// echo '<div class="">' . $years . $month . $days . '<br>' . $time_h . ' : ' . $time_i . '</div></div>';
 		echo '<div class="">' . sprintf( __( '%2$s%3$s%1$s<br>%4$s : %5$s', VA_SIMPLE_EXPIRES_TEXTDOMAIN ), $years, $month, $days, $time_h, $time_i ) . '</div></div>';
 		echo "<p>".__( 'Insert a date for expire.', VA_SIMPLE_EXPIRES_TEXTDOMAIN )."</p>";
 	}
