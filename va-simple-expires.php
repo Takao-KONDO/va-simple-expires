@@ -5,7 +5,7 @@ Plugin Name: VA Simple Expires
 Plugin URI: https://github.com/VisuAlive/va-simple-expires
 Description: This is the fork of Simple Expires created by Mr. abmcr.
 Simple plugin which can set up the term of validity.
-Author: VisuAlive
+Author: KUCKLU
 Version: 1.0.0
 Author URI: http://visualive.jp/
 Text Domain: va-simple-expires
@@ -13,7 +13,7 @@ Domain Path: /languages
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-VisuAlive WordPress Plugin, Copyright (C) 2014 VisuAlive Inc
+VisuAlive WordPress Plugin, Copyright (C) 2014 VisuAlive and KUCKLU
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -79,7 +79,7 @@ class VA_Simple_Expires {
 	}
 
 	function loadAdmin() {
-		wp_enqueue_script( 'my_validate', VA_SIMPLE_EXPIRES_PLUGIN_URL.'/js/jquery.validate.pack.js', array('jquery') );
+		wp_enqueue_style( 'vase-style', VA_SIMPLE_EXPIRES_PLUGIN_URL . '/css/vase-style.css' );
 	}
 
 	private function va_se_get_post_types() {
@@ -87,7 +87,6 @@ class VA_Simple_Expires {
 		$custom_post  = get_post_types( array( 'public' => true, '_builtin' => false ), 'names' );
 		return array_merge( $default_post, $custom_post );
 	}
-	// end Riboni Igor
 
 	function add_post_status() {
 		global $post;
