@@ -1,6 +1,5 @@
 === VA Simple Expires ===
 Contributors: kuck1u
-Donate link: https://github.com/VisuAlive/va-simple-expires
 Tags: automation, expire, expires, expiring, schedule, scheduling
 Requires at least: 3.8.2
 Tested up to: 3.9.0
