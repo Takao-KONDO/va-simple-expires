@@ -6,7 +6,7 @@ Plugin URI: https://github.com/VisuAlive/va-simple-expires
 Description: This is the fork of Simple Expires created by Mr. abmcr.
 Simple plugin which can set up the term of validity.
 Author: KUCKLU
-Version: 1.0.0
+Version: 1.0.2
 Author URI: http://visualive.jp/
 Text Domain: va-simple-expires
 Domain Path: /languages
@@ -162,7 +162,7 @@ jQuery(document).ready(function($){
 		$years .= '</select>';
 
 		$month = "<select  id=\"mese\" name=\"mese\">\n";
-		for ( $i = 1; $i < 13; $i = $i +1 ) {
+		for ( $i = 1; $i <= 12; $i = $i +1 ) {
 			$month .= "\t\t\t" . '<option value="' . esc_attr( zeroise( $i, 2 ) ) . '"';
 			if ( $i == $mese )
 				$month .= ' selected="selected"';
@@ -171,7 +171,7 @@ jQuery(document).ready(function($){
 		$month .= '</select>';
 
 		$days = "<select  id=\"giorno\" name=\"giorno\">\n";
-		for ( $i = 0; $i < 32; $i = $i +1 ) {
+		for ( $i = 1; $i <= 31; $i = $i +1 ) {
 			$days .= "\t\t\t" . '<option value="' . esc_attr( zeroise($i, 2) ) . '"';
 			if ( $i == $giorno )
 				$days .= ' selected="selected"';
@@ -180,7 +180,7 @@ jQuery(document).ready(function($){
 		$days .= '</select>';
 
 		$time_h = "<select  id=\"ore\" name=\"ore\">\n";
-		for ( $i = 0; $i < 24; $i = $i +1 ) {
+		for ( $i = 0; $i <= 23; $i = $i +1 ) {
 			$time_h .= "\t\t\t" . '<option value="' . esc_attr( str_pad($i, 2, "0", STR_PAD_LEFT) ) . '"';
 			if ( $i == $ore )
 				$time_h .= ' selected="selected"';
@@ -189,7 +189,7 @@ jQuery(document).ready(function($){
 		$time_h .= '</select>';
 
 		$time_i = "<select  id=\"min\" name=\"min\">\n";
-		for ( $i = 0; $i < 60; $i = $i +1 ) {
+		for ( $i = 0; $i <= 59; $i = $i +1 ) {
 			$time_i .= "\t\t\t" . '<option value="' . esc_attr( str_pad($i, 2, "0", STR_PAD_LEFT) ) . '"';
 			if ( $i == $min )
 				$time_i .= ' selected="selected"';
