@@ -35,7 +35,7 @@ The description covers it all.
 
 == Changelog ==
 
-= 1.0.1 =
+= 1.0.2 =
 * Bug fix.
 
 = 1.0.1 =
