@@ -2,7 +2,7 @@
 Contributors: VisuAlive (KUCKLU)  
 Tags: automation, expire, expires, expiring, schedule, scheduling  
 Requires at least: 3.8.2  
-Tested up to: 3.9.0  
+Tested up to: 3.9.1  
 Stable tag: trunk  
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -32,6 +32,13 @@ The description covers it all.
 1. VA Simple Expires.
 
 ## Changelog
+### 1.0.2
+* Bug fix.
+
+### 1.0.1
+* Change The Readme text.
+There is no change to the program file.
+
 ### 1.0.0
 * First public release.
 
