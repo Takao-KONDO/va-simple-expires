@@ -29,7 +29,10 @@ The description covers it all.
 
 ## Screenshots
 
-1. VA Simple Expires.
+1. Screenshot.
+![Screenshot - 1](https://raw.githubusercontent.com/VisuAlive/va-simple-expires/master/screenshot-1.png)
+2. Screenshot.
+![Screenshot - 2](https://raw.githubusercontent.com/VisuAlive/va-simple-expires/master/screenshot-2.png)
 
 ## Changelog
 ### 1.0.2
