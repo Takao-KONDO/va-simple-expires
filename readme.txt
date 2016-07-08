@@ -2,7 +2,7 @@
 Contributors: kuck1u
 Tags: automation, expire, expires, expiring, schedule, scheduling
 Requires at least: 3.8.2
-Tested up to: 3.9.1
+Tested up to: 4.3
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -14,6 +14,8 @@ Simple plugin which can set up the term of validity.
 
 VA Simple Expires is a plugin that allows you to add an expiration date to posts.
 The usage is pretty simple. You define an expiration date to a post and when the date comes, the post is removed from the public side of your site and set to "expiration". "Expiration" is a new post status added by the plugin.
+
+[youtube http://www.youtube.com/watch?v=Aeebezu1XlQ /]
 
 == Installation ==
 
@@ -35,14 +37,29 @@ The description covers it all.
 
 == Changelog ==
 
+= 1.0.6 =
+* Bug fix.  
+Problem with a expiration year.
+
+= 1.0.5 =
+* Bug fix.  
+Change the priority of add_meta_box to core.
+
+= 1.0.4 =
+* Bug fix.
+
+Tested in PHP5.6.
+
+= 1.0.3 =
+* Bug fix.  
+Fixed a bug that Meta data that you created in wp-types did not take over.
+
 = 1.0.2 =
 * Bug fix.
 
 = 1.0.1 =
-* Change The Readme text.
+* Change The Readme text.  
 There is no change to the program file.
 
 = 1.0.0 =
 * First public release.
-
-

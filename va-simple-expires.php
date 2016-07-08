@@ -6,8 +6,8 @@ Plugin URI: https://github.com/VisuAlive/va-simple-expires
 Description: This is the fork of Simple Expires created by Mr. abmcr.
 Simple plugin which can set up the term of validity.
 Author: KUCKLU
-Version: 1.0.2
-Author URI: http://visualive.jp/
+Version: 1.0.6
+Author URI: https://www.visualive.jp/
 Text Domain: va-simple-expires
 Domain Path: /languages
 License: GNU General Public License v2 or later
@@ -28,31 +28,71 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
-if ( ! class_exists( 'VA_Simple_Expires' ) ) :
-define( 'VA_SIMPLE_EXPIRES_PLUGIN_URL', plugin_dir_url(__FILE__) );
+define( 'VA_SIMPLE_EXPIRES_PLUGIN_URL',  plugin_dir_url(__FILE__) );
 define( 'VA_SIMPLE_EXPIRES_PLUGIN_PATH', plugin_dir_path(__FILE__) );
-define( 'VA_SIMPLE_EXPIRES_DOMAIN', dirname(plugin_basename(__FILE__)) );
-define( 'VA_SIMPLE_EXPIRES_TEXTDOMAIN', 'va-simple-expires' );
+define( 'VA_SIMPLE_EXPIRES_DOMAIN',      dirname( plugin_basename(__FILE__) ) );
+define( 'VA_SIMPLE_EXPIRES_TEXTDOMAIN',  'va-simple-expires' );
 
-class VA_Simple_Expires {
-	function __construct() {
-		add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ) );
-		add_action( 'admin_menu', array( $this, 'loadAdmin' ) );
-		add_action( 'admin_head', array( $this, 'add_post_status' ) );
-		add_action( 'init', array( $this, 'simple_expires' ) );
-		add_action( 'add_meta_boxes', array( $this, 'scadenza_add_custom_box' ) );
-		add_action( 'save_post', array( $this, 'scadenza_save_postdata' ) );
+/**
+ * Ran plugin.
+ */
+if ( !function_exists( 'va_simple_expires_setup' ) ) :
+	function va_simple_expires_setup() {
+		if ( !class_exists( 'VA_SIMPLE_EXPIRES_SETUP' ) ) {
+			class VA_SIMPLE_EXPIRES_SETUP extends _VA_SIMPLE_EXPIRES {
+				protected function __construct() {
+					parent::__construct();
+				}
+			}
+		}
+
+		$va_simple_expires = VA_SIMPLE_EXPIRES_SETUP::instance();
+	}
+endif; // va_simple_expires_setup
+add_action( 'plugins_loaded', 'va_simple_expires_setup' );
+
+/**
+ * Class _VA_SIMPLE_EXPIRES
+ */
+class _VA_SIMPLE_EXPIRES {
+	/**
+	 * Holds the singleton instance of this class
+	 *
+	 * @var array
+	 */
+	private static $instances = false;
+
+	/**
+	 * Instance
+	 *
+	 * @return self
+	 */
+	public static function instance(){
+		if( !self::$instances ) {
+			self::$instances = new _VA_SIMPLE_EXPIRES;
+		}
+
+		return self::$instances;
 	}
 
-	function deactivation() {
+	/**
+	 * This hook is called once any activated plugins have been loaded.
+	 */
+	protected function __construct() {
+		load_plugin_textdomain( VA_SIMPLE_EXPIRES_TEXTDOMAIN, false, VA_SIMPLE_EXPIRES_DOMAIN .'/languages' );
+
+		add_action( 'plugins_loaded', array( &$this, 'plugins_loaded' )          );
+		add_action( 'admin_menu',     array( &$this, 'loadAdmin' )               );
+		add_action( 'admin_head',     array( &$this, 'add_post_status' )         );
+		add_action( 'init',           array( &$this, 'simple_expires' )          );
+		add_action( 'add_meta_boxes', array( &$this, 'scadenza_add_custom_box' ) );
+		add_action( 'save_post',      array( &$this, 'scadenza_save_postdata' )  );
+	}
+
+	public function deactivation() {
 		//  remove rows from wp_postmeta tables
 		global $wpdb;
 		$wpdb->query( $wpdb->prepare("DELETE FROM $wpdb->postmeta WHERE meta_key='scadenza-enable' OR meta_key='scadenza-date'" ) );
-	}
-
-	function plugins_loaded() {
-		load_plugin_textdomain( VA_SIMPLE_EXPIRES_TEXTDOMAIN, false, VA_SIMPLE_EXPIRES_DOMAIN .'/languages' );
 	}
 
 	function loadAdmin() {
@@ -62,6 +102,7 @@ class VA_Simple_Expires {
 	private function va_se_get_post_types() {
 		$default_post = array('post' => 'post', 'page' => 'page');
 		$custom_post  = get_post_types( array( 'public' => true, '_builtin' => false ), 'names' );
+
 		return array_merge( $default_post, $custom_post );
 	}
 
@@ -118,13 +159,16 @@ jQuery(document).ready(function($){
 		", current_time("mysql") ) );
 		// Act upon the results
 		if ( ! empty( $result ) ) :
+			$update_post = array();
 			// Proceed with the updating process
 			// step through the results
 			foreach ( $result as $cur_post ) :
-				$update_post = array('ID' => $cur_post->post_id);
+				$update_post['ID'] = $cur_post->post_id;
 				// Get the Post's ID into the update array
 				$update_post['post_status'] = 'expiration';
+				remove_action( 'simple_expires','save_post' );
 				wp_update_post( $update_post );
+				add_action( 'simple_expires','save_post' );
 			endforeach;
 		endif;
 	}
@@ -133,7 +177,7 @@ jQuery(document).ready(function($){
 	function scadenza_add_custom_box() {
 		$custom_post_types = $this->va_se_get_post_types();
 		foreach ( $custom_post_types as $t ) {
-			add_meta_box( 'scadenza_plugin', __( 'Expire', VA_SIMPLE_EXPIRES_TEXTDOMAIN ), array( $this, 'scadenza_' ), $t, 'side', 'high' );
+			add_meta_box( 'scadenza_plugin', __( 'Expire', VA_SIMPLE_EXPIRES_TEXTDOMAIN ), array( $this, 'scadenza_' ), $t, 'side', 'core' );
 		}
 	}
 
@@ -152,8 +196,9 @@ jQuery(document).ready(function($){
 		$min      = ( ! empty($scadenza) ) ? mysql2date( 'i', $scadenza, false ) : gmdate( 'i', $time_adj );
 
 		$years = "<select  id=\"anno\" name=\"anno\">\n";
-		$years_limit = $anno + 11;
-		for ( $i = $anno; $i < $years_limit; $i = $i +1 ) {
+		$years_this  = gmdate( 'Y', $time_adj );
+		$years_limit = $years_this + 11;
+		for ( $i = $years_this; $i < $years_limit; $i = $i +1 ) {
 			$years .= "\t\t\t" . '<option value="' . esc_attr($i) . '"';
 			if ( $i == $anno )
 				$years .= ' selected="selected"';
@@ -253,6 +298,4 @@ jQuery(document).ready(function($){
 		update_post_meta( $post_id, 'scadenza-enable', $enabled );
 		return $mydata;
 	}
-} // class VA_Simple_Expires
-new VA_Simple_Expires;
-endif;
+} // class _VA_SIMPLE_EXPIRES
